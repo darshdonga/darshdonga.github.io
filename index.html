@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Darshan Donga</title>
+  <meta name="description" content="Zendesk Admin, Business Analyst & AI Automation Specialist with 15+ years of experience in CX transformation and SaaS implementations." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0e0e0e;
+      --surface: #161616;
+      --border: rgba(255,255,255,0.08);
+      --border-hover: rgba(255,255,255,0.16);
+      --text: #f0ede8;
+      --muted: #888;
+      --accent: #d4a853;
+      --accent-dim: rgba(212,168,83,0.12);
+      --accent-dim2: rgba(212,168,83,0.06);
+      --tag-bg: rgba(255,255,255,0.06);
+      --tag-text: #aaa;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 16px;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── layout ── */
+    .container {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    /* ── header ── */
+    header {
+      padding: 5rem 0 3.5rem;
+      opacity: 0;
+      transform: translateY(18px);
+      animation: rise 0.7s ease forwards 0.1s;
+    }
+
+    .name {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(2rem, 6vw, 3rem);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      margin-bottom: 0.5rem;
+      color: var(--text);
+    }
+
+    .tagline {
+      font-size: 1rem;
+      color: var(--muted);
+      font-weight: 300;
+      max-width: 520px;
+      line-height: 1.6;
+      margin-bottom: 1.75rem;
+    }
+
+    .social-links {
+      display: flex;
+      gap: 1.25rem;
+      flex-wrap: wrap;
+    }
+
+    .social-links a {
+      color: var(--accent);
+      text-decoration: none;
+      font-size: 0.875rem;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.2s;
+    }
+
+    .social-links a:hover { border-color: var(--accent); }
+
+    /* ── divider ── */
+    hr {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 0;
+    }
+
+    /* ── sections ── */
+    section {
+      padding: 3rem 0;
+      border-top: 1px solid var(--border);
+      opacity: 0;
+      transform: translateY(16px);
+    }
+
+    section.visible {
+      animation: rise 0.6s ease forwards;
+    }
+
+    .section-label {
+      font-family: 'Syne', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 1.5rem;
+    }
+
+    /* ── about ── */
+    .about-text {
+      font-size: 1rem;
+      color: #c8c4bc;
+      font-weight: 300;
+      line-height: 1.8;
+    }
+
+    /* ── experience ── */
+    .exp-item {
+      margin-bottom: 2.25rem;
+      padding-bottom: 2.25rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .exp-item:last-child {
+      margin-bottom: 0;
+      padding-bottom: 0;
+      border-bottom: none;
+    }
+
+    .exp-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 1rem;
+      margin-bottom: 0.35rem;
+      flex-wrap: wrap;
+    }
+
+    .exp-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--text);
+      line-height: 1.3;
+    }
+
+    .exp-period {
+      font-size: 0.8rem;
+      color: var(--muted);
+      white-space: nowrap;
+      flex-shrink: 0;
+      margin-top: 0.15rem;
+      font-weight: 300;
+    }
+
+    .exp-company {
+      font-size: 0.875rem;
+      color: var(--accent);
+      font-weight: 400;
+      margin-bottom: 0.75rem;
+    }
+
+    .exp-company span {
+      color: var(--muted);
+      font-weight: 300;
+    }
+
+    .exp-desc {
+      font-size: 0.9rem;
+      color: #999;
+      font-weight: 300;
+      line-height: 1.75;
+    }
+
+    .exp-highlights {
+      list-style: none;
+      margin-top: 0.75rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .exp-highlights li {
+      font-size: 0.875rem;
+      color: #888;
+      padding-left: 1.1rem;
+      position: relative;
+      line-height: 1.6;
+    }
+
+    .exp-highlights li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-size: 0.75rem;
+      top: 0.05em;
+    }
+
+    /* ── skills ── */
+    .skills-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .skill-group h4 {
+      font-size: 0.8rem;
+      color: var(--muted);
+      font-weight: 400;
+      margin-bottom: 0.6rem;
+      letter-spacing: 0.04em;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+    }
+
+    .tag {
+      background: var(--tag-bg);
+      border: 1px solid var(--border);
+      color: var(--tag-text);
+      font-size: 0.8rem;
+      padding: 0.25rem 0.65rem;
+      border-radius: 4px;
+      font-weight: 400;
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    .tag:hover {
+      border-color: var(--border-hover);
+      color: var(--text);
+    }
+
+    /* ── certifications ── */
+    .certs-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .cert-item {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 0.9rem;
+      color: #aaa;
+      font-weight: 300;
+    }
+
+    .cert-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+      flex-shrink: 0;
+    }
+
+    /* ── education ── */
+    .edu-item {
+      margin-bottom: 1rem;
+    }
+
+    .edu-degree {
+      font-size: 0.95rem;
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    .edu-meta {
+      font-size: 0.85rem;
+      color: var(--muted);
+      font-weight: 300;
+    }
+
+    /* ── contact ── */
+    .contact-links {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .contact-row {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 0.9rem;
+    }
+
+    .contact-label {
+      color: var(--muted);
+      font-size: 0.8rem;
+      min-width: 60px;
+      font-weight: 300;
+    }
+
+    .contact-row a {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 400;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.2s;
+    }
+
+    .contact-row a:hover { border-color: var(--accent); }
+
+    .contact-row span { color: #bbb; }
+
+    /* ── footer ── */
+    footer {
+      padding: 2.5rem 0;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    footer p {
+      font-size: 0.8rem;
+      color: var(--muted);
+      font-weight: 300;
+    }
+
+    footer .foot-links {
+      display: flex;
+      gap: 1.25rem;
+    }
+
+    footer a {
+      color: var(--muted);
+      font-size: 0.8rem;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    footer a:hover { color: var(--accent); }
+
+    /* ── animations ── */
+    @keyframes rise {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── responsive ── */
+    @media (max-width: 480px) {
+      header { padding: 3.5rem 0 2.5rem; }
+      section { padding: 2.25rem 0; }
+      .exp-header { flex-direction: column; gap: 0.15rem; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- HEADER -->
+  <header>
+    <h1 class="name">Darshan Donga</h1>
+    <p class="tagline">Zendesk Admin &amp; Business Analyst — designing AI-powered CX systems that quietly make people more effective.</p>
+    <div class="social-links">
+      <a href="https://linkedin.com/in/darrshandonga" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="mailto:darshan.donga@gmail.com">Email</a>
+      <a href="https://github.com/darrshdonga" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </header>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <p class="section-label">About</p>
+    <p class="about-text">
+      I've spent 15+ years building and transforming the technology layer of customer experience — 
+      five of those dedicated entirely to Zendesk. My work lives at the intersection of CX strategy, 
+      intelligent automation, and practical AI: deploying AI Agents that reduce ticket volume, 
+      integrating Zendesk with enterprise CRM and CCaaS platforms via APIs, and building 
+      Explore dashboards that give leadership the data to make real decisions.<br><br>
+      I believe support infrastructure should be invisible to the customer and indispensable to the business. 
+      The best system is the one that nobody notices.
+    </p>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <p class="section-label">Experience</p>
+
+    <div class="exp-item">
+      <div class="exp-header">
+        <span class="exp-title">Business Analyst – Zendesk</span>
+        <span class="exp-period">Mar 2023 — Present</span>
+      </div>
+      <p class="exp-company"><a href="https://deel.com" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;">Deel</a> <span>· India (Remote)</span></p>
+      <ul class="exp-highlights">
+        <li>Manage Zendesk Suite instances across 1,500+ agent licenses, multiple product lines, maintaining 99%+ platform uptime.</li>
+        <li>Integrated Zendesk with CRM and CCaaS platforms via REST APIs and webhooks, reducing manual data handling by 40%+.</li>
+        <li>Deployed and optimised AI Agents and chatbot flows within Zendesk Messaging, achieving measurable ticket deflection.</li>
+        <li>Built and maintained internal and external knowledge bases, driving self-service adoption and reducing inbound volume.</li>
+        <li>Designed Explore dashboards tracking CSAT, SLA compliance, ticket volume, and agent productivity for CX leadership.</li>
+        <li>Lead training and enablement programmes upskilling agents and admins on platform capabilities and new feature rollouts.</li>
+      </ul>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-header">
+        <span class="exp-title">Solution Consultant</span>
+        <span class="exp-period">Jun 2021 — Mar 2023</span>
+      </div>
+      <p class="exp-company">DynaNet Online Support <span>· India — Authorised Zendesk, Freshdesk &amp; Zoho partner</span></p>
+      <ul class="exp-highlights">
+        <li>Delivered 15+ end-to-end Zendesk SaaS implementations for global clients across e-commerce, SaaS, and services.</li>
+        <li>Implemented AI-powered chatbots and omnichannel integrations across email, chat, social, and VoIP telephony.</li>
+        <li>Integrated Zendesk with Salesforce, Zapier, and telephony/PM tools, enabling seamless cross-platform data flow.</li>
+        <li>Conducted instance audits and health checks; delivered admin and agent training for global teams.</li>
+      </ul>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-header">
+        <span class="exp-title">Technology Consultant</span>
+        <span class="exp-period">Oct 2016 — Jun 2021</span>
+      </div>
+      <p class="exp-company">Tekidyaa <span>· India</span></p>
+      <ul class="exp-highlights">
+        <li>Led software implementations and business analysis for major hospitality chains across India.</li>
+        <li>Managed full project lifecycle: requirements gathering, go-live, system operations training, and infrastructure setup.</li>
+      </ul>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-header">
+        <span class="exp-title">Technical Consultant – Hospitality</span>
+        <span class="exp-period">Jul 2014 — Oct 2016</span>
+      </div>
+      <p class="exp-company">F1 Infotech <span>· Dubai, UAE</span></p>
+      <ul class="exp-highlights">
+        <li>Project-managed full IT infrastructure setups for pre-opening hotel properties in the UAE.</li>
+        <li>Supported Millennium Group of Hotels with BI and infrastructure, coordinating cross-functional technical teams.</li>
+      </ul>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-header">
+        <span class="exp-title">Assistant Manager Corporate – IT</span>
+        <span class="exp-period">Dec 2013 — Jun 2014</span>
+      </div>
+      <p class="exp-company">The Leela Group of Hotels <span>· India</span></p>
+      <ul class="exp-highlights">
+        <li>Managed Opera PMS, OCIS, ORS, OXI, and OCM implementations and upgrades across 7 hotel properties.</li>
+      </ul>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-header">
+        <span class="exp-title">IT Special Project Administrator</span>
+        <span class="exp-period">Jul 2009 — Dec 2013</span>
+      </div>
+      <p class="exp-company">Thunderbird Resorts <span>· Philippines</span></p>
+      <ul class="exp-highlights">
+        <li>Oversaw CMS, CRM, Spa, Golf, HRMS, POS, and PMS implementations for hospitality and gaming clients globally.</li>
+      </ul>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-header">
+        <span class="exp-title">IT Supervisor</span>
+        <span class="exp-period">Jul 2008 — Jul 2009</span>
+      </div>
+      <p class="exp-company">Trident Hotels (Oberoi Group) <span>· India</span></p>
+      <ul class="exp-highlights">
+        <li>Led pre-opening IT team of 5 for Trident BKC Mumbai: LAN design, Cat6 cabling, data centre, 250 desktops deployed.</li>
+      </ul>
+    </div>
+
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <p class="section-label">Core Skills</p>
+    <div class="skills-grid">
+      <div class="skill-group">
+        <h4>Zendesk Suite</h4>
+        <div class="tags">
+          <span class="tag">Support</span>
+          <span class="tag">Guide</span>
+          <span class="tag">Messaging</span>
+          <span class="tag">Explore</span>
+          <span class="tag">AI Agents</span>
+          <span class="tag">Talk / Voice</span>
+          <span class="tag">Omnichannel Routing</span>
+          <span class="tag">Triggers &amp; Automations</span>
+          <span class="tag">SLA Metrics</span>
+          <span class="tag">Webhooks</span>
+          <span class="tag">Dynamic Content</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h4>Integrations &amp; API</h4>
+        <div class="tags">
+          <span class="tag">REST API</span>
+          <span class="tag">JSON</span>
+          <span class="tag">Webhooks</span>
+          <span class="tag">Salesforce</span>
+          <span class="tag">Jira</span>
+          <span class="tag">Slack</span>
+          <span class="tag">Zapier</span>
+          <span class="tag">DOMO</span>
+          <span class="tag">Workday</span>
+          <span class="tag">Calendly</span>
+          <span class="tag">CCaaS Platforms</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h4>Technical</h4>
+        <div class="tags">
+          <span class="tag">Python</span>
+          <span class="tag">SSO / SAML</span>
+          <span class="tag">Okta</span>
+          <span class="tag">O365</span>
+          <span class="tag">MS Teams</span>
+          <span class="tag">Windows Server</span>
+          <span class="tag">VPN</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h4>CX &amp; Operations</h4>
+        <div class="tags">
+          <span class="tag">CX Strategy</span>
+          <span class="tag">Ticket Deflection</span>
+          <span class="tag">CSAT Optimisation</span>
+          <span class="tag">Knowledge Base</span>
+          <span class="tag">Agent Enablement</span>
+          <span class="tag">Stakeholder Management</span>
+          <span class="tag">Agile</span>
+          <span class="tag">Project Management</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CERTIFICATIONS -->
+  <section id="certifications">
+    <p class="section-label">Zendesk Certifications</p>
+    <div class="certs-list">
+      <div class="cert-item"><span class="cert-dot"></span>Zendesk Agent Workspace</div>
+      <div class="cert-item"><span class="cert-dot"></span>Zendesk Messaging</div>
+      <div class="cert-item"><span class="cert-dot"></span>Zendesk Foundational Support Agent</div>
+      <div class="cert-item"><span class="cert-dot"></span>Zendesk Omnichannel Agent</div>
+      <div class="cert-item"><span class="cert-dot"></span>Zendesk Talk / Voice</div>
+    </div>
+  </section>
+
+  <!-- EDUCATION -->
+  <section id="education">
+    <p class="section-label">Education &amp; Credentials</p>
+    <div class="edu-item">
+      <p class="edu-degree">Bachelor of Business Administration</p>
+      <p class="edu-meta">2016</p>
+    </div>
+    <div class="edu-item">
+      <p class="edu-degree">CCNA &amp; MCSE Certification · Network Administration</p>
+      <p class="edu-meta">2007</p>
+    </div>
+    <div class="edu-item">
+      <p class="edu-degree">Computer Programming</p>
+      <p class="edu-meta">Aptech Education, Mumbai · 2005</p>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <p class="section-label">Get in Touch</p>
+    <div class="contact-links">
+      <div class="contact-row">
+        <span class="contact-label">Email</span>
+        <a href="mailto:darshan.donga@gmail.com">darshan.donga@gmail.com</a>
+      </div>
+      <div class="contact-row">
+        <span class="contact-label">Phone</span>
+        <span>+91 92271 20159</span>
+      </div>
+      <div class="contact-row">
+        <span class="contact-label">LinkedIn</span>
+        <a href="https://linkedin.com/in/darrshandonga" target="_blank" rel="noopener">linkedin.com/in/darrshandonga</a>
+      </div>
+      <div class="contact-row">
+        <span class="contact-label">Location</span>
+        <span>Surat, Gujarat, India</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2026 Darshan Donga</p>
+    <div class="foot-links">
+      <a href="mailto:darshan.donga@gmail.com">Email</a>
+      <a href="https://linkedin.com/in/darrshandonga" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://github.com/darrshdonga" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </footer>
+
+</div>
+
+<script>
+  const sections = document.querySelectorAll('section');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.08 });
+  sections.forEach(s => observer.observe(s));
+</script>
+
+</body>
+</html>
